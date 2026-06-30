@@ -1,7 +1,7 @@
 # Examen Práctico Final — Seguridad Informática
 
 **Estudiante:** David Robert Yucra Mamani  
-**Repositorio:** `examen-practico-yucra`  
+**Repositorio:** `examen-practico-yucra-mamani`  
 **Curso:** Seguridad Informática  
 **Unidad IV:** Monitoreo de Seguridad, SIEM e Inteligencia Artificial  
 **Modalidad elegida:** AWS Education / AWS Educate por recursos limitados en PC local.
