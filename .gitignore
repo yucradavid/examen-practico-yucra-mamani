@@ -2,7 +2,20 @@ __pycache__/
 *.pyc
 .venv/
 .ipynb_checkpoints/
-*.log
-lab1/*.json
-lab1/graficas/*.png
-lab3/modelo_anomalias.pkl
+
+# No subir basura temporal del sistema
+.DS_Store
+Thumbs.db
+
+# No subir credenciales ni archivos sensibles
+.env
+*.pem
+*.key
+
+# No ignorar los entregables del examen:
+# lab1/auth.log
+# lab1/access.log
+# lab1/reporte_ssh.json
+# lab1/reporte_web.json
+# lab1/graficas/*.png
+# lab3/modelo_anomalias.pkl
