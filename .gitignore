@@ -1,0 +1,8 @@
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+*.log
+lab1/*.json
+lab1/graficas/*.png
+lab3/modelo_anomalias.pkl

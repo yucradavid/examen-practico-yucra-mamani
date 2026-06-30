@@ -1,0 +1,14 @@
+{
+  "title": "SOC - Monitor de Seguridad",
+  "autor": "David Robert Yucra Mamani",
+  "herramienta": "OpenSearch Dashboards / Wazuh Dashboard",
+  "index_pattern": "wazuh-alerts-*",
+  "time_range": "last 24 hours",
+  "visualizaciones_requeridas": [
+    {"id": "V1", "tipo": "Vertical Bar", "metrica": "Count de alertas", "agrupacion": "rule.level"},
+    {"id": "V2", "tipo": "Data Table", "metrica": "Top 10 IPs con mas alertas", "agrupacion": "data.srcip"},
+    {"id": "V3", "tipo": "Line", "metrica": "Alertas por hora", "agrupacion": "@timestamp por intervalo 1h"},
+    {"id": "V4", "tipo": "Pie Chart", "metrica": "Distribucion por tipo de regla", "agrupacion": "rule.groups"}
+  ],
+  "nota": "Reemplazar este archivo por el export nativo desde OpenSearch Dashboards cuando termines el dashboard real. Se deja como plantilla de control."
+}

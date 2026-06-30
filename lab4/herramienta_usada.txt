@@ -1,0 +1,5 @@
+Herramienta elegida: OpenSearch Dashboards / Wazuh Dashboard incluido en Wazuh All-in-One
+Version: registrar con /usr/share/wazuh-dashboard/bin/opensearch-dashboards --version o desde la interfaz
+URL/IP del servicio AWS: https://<IP_PUBLICA_EC2>:443
+Autor: David Robert Yucra Mamani
+Repositorio: examen-practico-yucra

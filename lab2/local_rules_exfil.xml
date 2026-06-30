@@ -1,0 +1,39 @@
+<!--
+Lab 2.2 - Regla local Wazuh: posible exfiltracion de datos.
+Logica:
+1) La regla 100010 marca un login SSH exitoso fuera del horario laboral.
+2) La regla 100011 detecta una conexion saliente desde una IP interna con mas de 500 MB.
+3) La regla 100012 correlaciona ambos comportamientos en el mismo origen durante una ventana de 8 horas.
+Nota: adapte los nombres de campos bytes_sent/bytes_out segun el decoder real del firewall o NetFlow usado.
+-->
+<group name="local,exfiltration,">
+  <rule id="100010" level="6">
+    <if_sid>5715</if_sid>
+    <time>22:00-23:59</time>
+    <description>Login SSH exitoso fuera del horario laboral desde $(srcip)</description>
+    <group>authentication_success,after_hours_login</group>
+  </rule>
+
+  <rule id="100013" level="6">
+    <if_sid>5715</if_sid>
+    <time>00:00-06:00</time>
+    <description>Login SSH exitoso fuera del horario laboral desde $(srcip)</description>
+    <group>authentication_success,after_hours_login</group>
+  </rule>
+
+  <rule id="100011" level="8">
+    <decoded_as>json</decoded_as>
+    <field name="srcip" type="pcre2">^(10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[0-1])\.)</field>
+    <field name="bytes_sent" type="pcre2">^([5-9][0-9]{8}|[1-9][0-9]{9,})$</field>
+    <description>Transferencia saliente superior a 500 MB desde host interno $(srcip)</description>
+    <group>data_transfer,possible_exfiltration</group>
+  </rule>
+
+  <rule id="100012" level="14" frequency="1" timeframe="28800">
+    <if_matched_group>after_hours_login</if_matched_group>
+    <if_matched_group>possible_exfiltration</if_matched_group>
+    <same_source_ip />
+    <description>CRITICO: posible exfiltracion de datos posterior a login fuera de horario desde $(srcip)</description>
+    <group>exfiltration,critical,correlation</group>
+  </rule>
+</group>
