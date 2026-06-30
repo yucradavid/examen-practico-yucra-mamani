@@ -1,9 +1,14 @@
-<!-- Lab 2.1 - Regla local Wazuh: fuerza bruta SSH -->
 <group name="local,ssh,">
-  <rule id="100001" level="10" frequency="10" timeframe="60">
-    <if_matched_sid>5716</if_matched_sid>
-    <same_source_ip />
+
+  <!--
+    Regla personalizada de fuerza bruta SSH.
+    Detecta intentos fallidos SSH clasificados por Wazuh con la regla 5710
+    y genera una alerta local de severidad 10 para evidenciar el ataque.
+  -->
+  <rule id="100000" level="10">
+    <if_sid>5710</if_sid>
     <description>Ataque de fuerza bruta SSH detectado desde $(srcip)</description>
-    <group>authentication_failures,brute_force</group>
+    <group>authentication_failures,brute_force,</group>
   </rule>
+
 </group>
